@@ -9,6 +9,7 @@
 #include <map>
 #include <cassert>
 #include <algorithm>
+#include <iterator>
 
 
 
@@ -33,22 +34,23 @@ struct Order
     Side m_type { };
 };
 
-struct PriceLevel
+struct OrderLocation
 {
-    std::deque<Order> orders { };
-    Quantity m_totalQuantity { };
+    Side side;
+    std::map<Price, std::deque<Order>>::iterator priceLevelIt;
+    std::deque<Order>::iterator orderIt;
+
 };
 
 
 class OrderBook
 {
     private:
-
         std::map<Price, std::deque<Order>> m_bids { };
         std::map<Price, std::deque<Order>> m_asks { };
+        std::unordered_map<OrderId, OrderLocation> m_orderIndex { };
 
     public:
-
         void add(const Order& newOrder);
         void cancel(const Order& cancelOrder);
         void execute(const Order& executeOrder);

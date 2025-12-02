@@ -12,6 +12,8 @@ int main() {
 
     book.execute(sell);
 
+    book.printBook();
+
     // assert(book.getVolumeAtPrice(100) == 0); // BUY order filled
     // assert(book.getVolumeAtPrice(90) == 0);  // SELL order filled
 

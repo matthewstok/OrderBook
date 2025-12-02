@@ -1,0 +1,11 @@
+# Ignore build artifacts
+orderbook
+*.o
+*.out
+*.exe
+
+# Ignore debug files
+*.log
+
+# Ignore macOS metadata
+.DS_Store
